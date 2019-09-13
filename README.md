@@ -1,14 +1,14 @@
 # _Medical Assistance Search_
 
-#### _Find the doctor that you need., {9/13/2019}_
+#### _Find the doctor that you need., 9/13/2019_
 
 #### By _**Devin Cooley**_
 
 ## Description
 
-_This application will allow the user to input a name or a ailment keyword and search for doctors in the Portland area that either have that name or are able to treat that ailment_
+_This application will allow the user to input a name or a ailment keyword and search for doctors in the Portland area that either have that name or are able to treat that ailment._
 
-##Specifications
+## Specifications
 
 | Spec                      |Input          | Output |
 |:---------------------------|:-------------|:------|
