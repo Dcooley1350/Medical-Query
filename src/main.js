@@ -19,6 +19,7 @@ $(document).ready(function() {
     $("#num-results").text("");
     $("#keyword-results").text("");
     $("#name-results").text("");
+    $("#populate").text("");
 
     //Run api query and store results
     let medicalQuery = new MedicalQuery();
