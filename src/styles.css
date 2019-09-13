@@ -1,0 +1,26 @@
+#results {
+  display: none;
+  font-style: italic;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.card-header:hover {
+  cursor: pointer;
+}
+
+.card-header {
+  font-weight: bold;
+}
