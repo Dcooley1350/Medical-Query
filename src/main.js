@@ -44,7 +44,7 @@ $(document).ready(function() {
           <p><span class='strong'>Address: </span><span id=streetpt2${i}></span> <span id=streetpt1${i}></span>; <span id=city${i}></span>, <span id=state${i}>; </span> ;<span id=zip${i}></span>.</p>
           </div>
           <div id=contact${i}></div>
-          <p><ul id=phones></ul></p>
+          <p><span class ="strong">Phone:</span><ul id=phones${i}></ul></p>
           <div id=patients${i}></div>
           <div id=url${i}></div>
           <div id=bio${i}></div>
@@ -53,7 +53,7 @@ $(document).ready(function() {
           </div>
           </div>`
         );
-
+        console.log(body.data [i].practices[0].website);
         //Fill in newly created doctor cards
         $(`#first-name${i}`).html(body.data[i].profile.first_name);
         $(`#last-name${i}`).html(body.data[i].profile.last_name);
@@ -62,12 +62,20 @@ $(document).ready(function() {
         $(`#city${i}`).html(body.data[i].practices[0].visit_address.city);
         $(`#state${i}`).html(body.data[i].practices[0].visit_address.state);
         $(`#zip${i}`).html(body.data[i].practices[0].visit_address.zip);
-        $(`#url${i}`).html(`<p><span class='strong'>Practice url: </span><a href=${body.data [i].practices[0].website}>${body.data[i].practices[0].name}</a></p>`);
+        if (body.data [i].practices[0].website === undefined) {
+        $(`#url${i}`).html(`<p><span class='strong'>No url listed.</span></p>`);
+        } else {
+        $(`#url${i}`).html(`<p><span class='strong'>Website: </span><a href=${body.data[i].practices[0].website}>${body.data[i].practices[0].website}</a></p>`);
+        }
         $(`#bio${i}`).html(`<p><span class='strong'>Doctor bio: </span>${body.data[i].profile.bio}</p>`);
-
-        // body.data[i].practices[0].phones.forEach(function(phone) {
-          //   $("#phones").append(`<li>${phone.type}: ${phone.number}</li>`);
-          // });
+        if (!body.data [i].practices[0].accepts_new_patients) {
+          $(`#patients${i}`).html(`<p class='strong'>Not accepting new patients at this time.</p>`);
+        } else if (body.data [i].practices[0].accepts_new_patients) {
+          $(`#patients${i}`).html(`<p class='strong'>Accepting new patients at this time.</p>`);
+        }
+        body.data[i].practices[0].phones.forEach(function(phone) {
+          $(`#phones${i}`).append(`<li>${phone.type}: ${phone.number}</li>`);
+        });
 
         }
       }, function(error) {
