@@ -8,6 +8,10 @@ h1 {
   font-family: 'Comfortaa', cursive;
   font-size: 100px;
 }
+h3 {
+  margin-top: 35px;
+  text-align: center;
+}
 
 form {
   text-align: center;
@@ -34,4 +38,13 @@ background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox=
 
 .jumbotron {
   background-color: #f8a978;
+}
+
+input {
+  margin-right: 10px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 20px;
 }
