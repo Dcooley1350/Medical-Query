@@ -54,7 +54,6 @@ $(document).ready(function() {
           </div>
           </div>`
         );
-        console.log(body.data [i].practices[0].website);
         //Fill in newly created doctor cards
         $(`#first-name${i}`).html(body.data[i].profile.first_name);
         $(`#last-name${i}`).html(body.data[i].profile.last_name);
