@@ -27,47 +27,51 @@ $(document).ready(function() {
     //Promise
     promise.then(function(response) {
       let body = JSON.parse(response);
+      //text number of results and search parameters back to user
       $("#num-results").text(body.meta.count);
       $("#keyword-results").text(keyword);
       $("#name-results").text(name);
       $("#results").show();
       for (var i = 0; i < body.meta.count; i++) {
+        //create cards for doctor information to be displayed
         $("#populate").append(
           `<div id="accordion">
-        <div class="card bg-light mb-3">
-        <div class="card-header" id="heading${i}" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=first-name${i}></span> <span id=last-name${i}></span></div>
-        <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
-        <div class="card-body">
-        <div id=address${i}>
-        <p><span class='strong'>Address: </span><span id=streetpt2${i}></span> <span id=streetpt1${i}></span>; <span id=city${i}></span>, <span id=state${i}>; </span> ;<span id=zip${i}></span>.</p>
-        </div>
-        <div id=contact${i}></div>
-        <p><ul id=phones></ul></p>
-        <div id=patients${i}></div>
-        <div id=url${i}></div>
-        <div id=bio${i}></div>
-        </div>
-        </div>
-        </div>
-        </div>`
-      );
-      console.log(body.data [i].practices[0].website);
-      $(`#first-name${i}`).html(body.data[i].profile.first_name);
-      $(`#last-name${i}`).html(body.data[i].profile.last_name);
-      $(`#streetpt2${i}`).html(body.data[i].practices[0].visit_address.street2);
-      $(`#streetpt1${i}`).html(body.data[i].practices[0].visit_address.street);
-      $(`#city${i}`).html(body.data[i].practices[0].visit_address.city);
-      $(`#state${i}`).html(body.data[i].practices[0].visit_address.state);
-      $(`#zip${i}`).html(body.data[i].practices[0].visit_address.zip);
-      body.data[i].practices[0].phones.forEach((phone) => {
-        $("#phones").append(`<li>${phone.type}: ${phone.number}</li>`)
-      });
+          <div class="card bg-light mb-3">
+          <div class="card-header" id="heading${i}" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapseOne"><span id=first-name${i}></span> <span id=last-name${i}></span></div>
+          <div id="collapse${i}" class="collapse show" aria-labelledby="heading${i}" data-parent="#accordion">
+          <div class="card-body">
+          <div id=address${i}>
+          <p><span class='strong'>Address: </span><span id=streetpt2${i}></span> <span id=streetpt1${i}></span>; <span id=city${i}></span>, <span id=state${i}>; </span> ;<span id=zip${i}></span>.</p>
+          </div>
+          <div id=contact${i}></div>
+          <p><ul id=phones></ul></p>
+          <div id=patients${i}></div>
+          <div id=url${i}></div>
+          <div id=bio${i}></div>
+          </div>
+          </div>
+          </div>
+          </div>`
+        );
 
-      $(`#url${i}`).html(`<p><span class='strong'>Practice url: </span><a href=${body.data [i].practices[0].website}>${body.data[i].practices[0].name}</a></p>`);
-      $(`#bio${i}`).html(`<p><span class='strong'>Doctor bio: </span>${body.data[i].profile.bio}</p>`);
-    }
-  }, function(error) {
-    $('#show-errors').text(`There was an error processing your request: ${error.message}`);
+        //Fill in newly created doctor cards
+        $(`#first-name${i}`).html(body.data[i].profile.first_name);
+        $(`#last-name${i}`).html(body.data[i].profile.last_name);
+        $(`#streetpt2${i}`).html(body.data[i].practices[0].visit_address.street2);
+        $(`#streetpt1${i}`).html(body.data[i].practices[0].visit_address.street);
+        $(`#city${i}`).html(body.data[i].practices[0].visit_address.city);
+        $(`#state${i}`).html(body.data[i].practices[0].visit_address.state);
+        $(`#zip${i}`).html(body.data[i].practices[0].visit_address.zip);
+        $(`#url${i}`).html(`<p><span class='strong'>Practice url: </span><a href=${body.data [i].practices[0].website}>${body.data[i].practices[0].name}</a></p>`);
+        $(`#bio${i}`).html(`<p><span class='strong'>Doctor bio: </span>${body.data[i].profile.bio}</p>`);
+
+        // body.data[i].practices[0].phones.forEach(function(phone) {
+          //   $("#phones").append(`<li>${phone.type}: ${phone.number}</li>`);
+          // });
+
+        }
+      }, function(error) {
+        $('#show-errors').text(`There was an error processing your request: ${error.message}`);
+      });
+    });
   });
-});
-});
